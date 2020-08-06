@@ -6,21 +6,27 @@ const {
 const database = require('./database')
 
 const DEFAULT_ITEM_CADASTRAR = {
+    id: 1,
     nome: 'Flash',
-    poder: 'Speed',
-    id: 1
+    poder: 'Speed'
 }
 
 describe('Suite de manipulação de Herois', () => {
 
-    it('deve pesquisar um heroi usando arquivos', async() => {
-            const expected = DEFAULT_ITEM_CADASTRAR
-            const [resultado] = await database.listar(expected.id)
-            deepEqual(resultado, expected)
-        })
-        // it('deve cadastrar um heroi, usando arquivos', async() => {
-        //     const expected = DEFAULT_ITEM_CADASTRAR
+    before(async () => {
+        await database.cadastrar(DEFAULT_ITEM_CADASTRAR)
+    })
 
-    //     ok(null, expected)
-    // })
+    it('deve pesquisar um heroi usando arquivos', async () => {
+        const expected = DEFAULT_ITEM_CADASTRAR
+        const [resultado] = await database.listar(expected.id)
+        deepEqual(resultado, expected)
+    })
+    it('deve cadastrar um heroi, usando arquivos', async () => {
+        const expected = { ...DEFAULT_ITEM_CADASTRAR, id: 2, name: 'Batman' }
+        const resultado = await database.cadastrar(expected)
+        const [actual] = await database.listar(expected.id)
+
+        deepEqual(actual, expected)
+    })
 })
