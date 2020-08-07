@@ -5,74 +5,88 @@
         "poder": "Speed"
     },
     {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
-        "poder": "Speed"
-    },
-    {
-        "id": 1,
-        "nome": "Flash",
+        "id": 2,
+        "nome": "Mr. Ansel Brekke",
         "poder": "Speed"
     },
     {
         "id": 2,
-        "nome": "Flash",
-        "poder": "Speed",
-        "name": "Batman"
+        "nome": "Mr. Ansel Brekke",
+        "poder": "Speed"
+    },
+    {
+        "id": 16046,
+        "nome": "Manuel Armstrong",
+        "poder": "New Hampshire"
+    },
+    {
+        "id": 2,
+        "nome": "Manuel Armstrong",
+        "poder": "New Hampshire"
+    },
+    {
+        "id": 65671,
+        "nome": "Magnus Marks",
+        "poder": "Games"
+    },
+    {
+        "id": 2,
+        "nome": "Magnus Marks",
+        "poder": "Games"
+    },
+    {
+        "id": 68173,
+        "nome": "Carlee Kilback",
+        "poder": "Plastic"
+    },
+    {
+        "id": 68173,
+        "nome": "Carlee Kilback",
+        "poder": "Plastic"
+    },
+    {
+        "id": 55464,
+        "nome": "Darrin Jones III",
+        "poder": "application"
+    },
+    {
+        "id": 55464,
+        "nome": "Darrin Jones III",
+        "poder": "application"
+    },
+    {
+        "id": 72693,
+        "nome": "Ms. Angelita O'Connell",
+        "poder": "Mouse"
+    },
+    {
+        "id": 72693,
+        "nome": "Ms. Angelita O'Connell",
+        "poder": "Mouse"
+    },
+    {
+        "id": 40126,
+        "nome": "Lera Schmidt",
+        "poder": "engineer"
+    },
+    {
+        "id": 40126,
+        "nome": "Lera Schmidt",
+        "poder": "engineer"
+    },
+    {
+        "id": 43349,
+        "nome": "Krystina Thompson",
+        "poder": "Auto Loan Account"
+    },
+    {
+        "id": 75148,
+        "nome": "Natasha Orn",
+        "poder": "web-enabled"
+    },
+    {
+        "id": 75148,
+        "nome": "Natasha Orn",
+        "poder": "web-enabled"
     }
 ]

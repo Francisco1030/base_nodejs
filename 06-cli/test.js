@@ -1,3 +1,4 @@
+const faker = require('faker')
 const {
     deepEqual,
     ok
@@ -6,9 +7,9 @@ const {
 const database = require('./database')
 
 const DEFAULT_ITEM_CADASTRAR = {
-    id: 1,
-    nome: 'Flash',
-    poder: 'Speed'
+    id: faker.random.number(),
+    nome: faker.name.findName(),
+    poder: faker.random.word()
 }
 
 describe('Suite de manipulação de Herois', () => {
@@ -23,7 +24,8 @@ describe('Suite de manipulação de Herois', () => {
         deepEqual(resultado, expected)
     })
     it('deve cadastrar um heroi, usando arquivos', async () => {
-        const expected = { ...DEFAULT_ITEM_CADASTRAR, id: 2, name: 'Batman' }
+        //const expected = { ...DEFAULT_ITEM_CADASTRAR, id: 2, name: 'Batman' }
+        const expected = { ...DEFAULT_ITEM_CADASTRAR }
         const resultado = await database.cadastrar(expected)
         const [actual] = await database.listar(expected.id)
 
