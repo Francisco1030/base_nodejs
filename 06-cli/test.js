@@ -14,14 +14,21 @@ const DEFAULT_ITEM_DINANMIC = {
 
 const DEFAULT_ITEM_STATIC = {
     id: 28011,
-    nome: "Mr. Marshall King",
-    poder: "Customer"
+    nome: 'Mr. Marshall King',
+    poder: 'Customer'
+}
+
+const DEFAULT_ITEM_UPDATE = {
+    id: 28011,
+    nome: 'Mr. Marshall King',
+    poder: 'Customer'
 }
 
 describe('Suite de manipulação de Herois', () => {
 
     before(async () => {
         await database.cadastrar(DEFAULT_ITEM_DINANMIC)
+        await database.cadastrar(DEFAULT_ITEM_UPDATE)
     })
 
     it('deve pesquisar um heroi usando arquivos', async () => {
@@ -42,6 +49,20 @@ describe('Suite de manipulação de Herois', () => {
         await database.cadastrar(DEFAULT_ITEM_STATIC)
         const resultado = await database.remover(DEFAULT_ITEM_STATIC.id)
         deepEqual(resultado, expected)
+    })
+    it.only('deve atualizar um heroi por id', async () => {
+        const experted = {
+            ...DEFAULT_ITEM_UPDATE,
+            nome: 'Francisco',
+            poder: 'Aleatorio'
+        }
+        const novoDado = {
+            nome: 'Francisco',
+            poder: 'Aleatorio'
+        }
+        await database.atualizar(DEFAULT_ITEM_UPDATE.id, novoDado)
+        const [resultado] = await database.listar(DEFAULT_ITEM_UPDATE.id)
+        deepEqual(resultado, experted)
     })
     /* Testa somente esse teste*/
     // it.only('deve romover um heroi por id', async () => {
