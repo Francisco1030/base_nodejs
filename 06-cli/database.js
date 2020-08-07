@@ -24,9 +24,9 @@ class Database {
         const dados = await this.obterDadosArquivos()
         //const id = heroi.id >= 2 ? heroi.id : Date.now();
         const id = heroi.id;
-        
+
         const heroiComId = { id, ...heroi }
-        const dadosFinal = [ ...dados, heroiComId ]
+        const dadosFinal = [...dados, heroiComId]
 
         const resultado = await this.escreverArquivo(dadosFinal)
         return resultado;
@@ -36,6 +36,18 @@ class Database {
         const dados = await this.obterDadosArquivos()
         const dadosFiltrados = dados.filter(item => (id ? (item.id === id) : true))
         return dadosFiltrados
+    }
+    async remover(id) {
+        if (!id) {
+            return await this.escreverArquivo([])
+        }
+        const dados = await this.obterDadosArquivos()
+        const indice = dados.findIndex(item => item.id === parseInt(id))
+        if (indice === -1) {
+            throw Error('O usuário informado não existe')
+        }
+        dados.splice(indice, 1)
+        return await this.escreverArquivo(dados)
     }
 }
 
