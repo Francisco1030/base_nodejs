@@ -8,11 +8,17 @@ const MOCK_HEROI_CADASTRAR = {
     poder: 'flexas'
 }
 
+const MOCK_HEROI_ATUALIZAR = { 
+    nome: 'Batman',
+    poder: 'Dinheiro'
+}
+
 describe('Postgres Strategy', function() {
     this.timeout(Infinity);
 
     this.beforeAll(async function() {
         db = await context.connect();
+        await context.create(MOCK_HEROI_ATUALIZAR);
     });
 
     it('PostgresSQL Connection', async function () {
@@ -35,5 +41,34 @@ describe('Postgres Strategy', function() {
         //const [posicao1, posicao2] = ['esse e o 1', 'esse e o 2'];
         
         assert.deepEqual(result, MOCK_HEROI_CADASTRAR);
+    });
+    it('Atualizar', async function() {
+        const [itemAtualizar] = await context.read({ nome: MOCK_HEROI_CADASTRAR.nome });
+        const novoItem = {
+            ...MOCK_HEROI_ATUALIZAR,
+            nome: 'Mulher Maravilha'
+        }
+
+        const [result] = await context.update(itemAtualizar.id, novoItem);
+        const [itemAtualizado] = await context.read({ id: itemAtualizar.id });
+        assert.deepEqual(result, 1);
+        assert.deepEqual(itemAtualizado.nome, novoItem.nome);
+        /*
+        No JS temos uma tecnica chamada rest/spread que é um metodo para mergar obj ou separa-los
+        {
+            id:1,
+        }
+        
+        {
+            nome: 'Francisco',
+        }
+
+        finala
+        {
+            id: 1,
+            nome: 'Francisco',
+        }
+        */
+        
     });
 });
