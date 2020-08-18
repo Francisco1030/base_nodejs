@@ -64,7 +64,7 @@ class ContextStrategy {
     }
 
     delete(id) {
-        return this._database.update(id);
+        return this._database.delete(id);
     }
 }
 
