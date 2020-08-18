@@ -1,0 +1,12 @@
+{
+  "name": "07-multi-db",
+  "version": "1.0.0",
+  "description": "<h2 align=\"center\"> Docker  </h2>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "“Francisco <“franciscoviana862@gmail.com”>",
+  "license": "“MIT”"
+}
