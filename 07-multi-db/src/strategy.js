@@ -25,9 +25,26 @@ class ICrud {
 
 // 'implementando' a interface ICrud
 class MongoDB extends ICrud {
+    constructor() {
+        super()
+    }
+
+    create(item) {
+        console.log('salvo no MongoDB');
+    }
 
 }
 
+class Postgres extends ICrud {
+    constructor() {
+        super()
+    }
+
+    create(item) {
+        console.log('salvo no Postgres');
+    }
+
+}
 
 class ContextStrategy {
     constructor(strategy) {
@@ -50,3 +67,10 @@ class ContextStrategy {
         return this._database.update(id);
     }
 }
+
+const contextMongo = new ContextStrategy(new MongoDB());
+contextMongo.create();
+
+const contextPostgres = new ContextStrategy(new Postgres());
+contextPostgres.create();
+contextPostgres.delete();
