@@ -8,9 +8,9 @@ const MOCK_HEROI_CADASTRAR = {
     poder: 'flexas'
 }
 
-const MOCK_HEROI_ATUALIZAR = { 
-    nome: 'Batman',
-    poder: 'Dinheiro'
+const MOCK_HEROI_DEAFALT = { 
+    nome: `Homem Aranha-${Date.now()}`,
+    poder: 'Super teia'
 }
 
 describe('MongoDB Strategy', function () {
@@ -19,7 +19,7 @@ describe('MongoDB Strategy', function () {
     this.beforeAll(async () => {
         db = await context.connect();
         // await context.delete();
-        // await context.create(MOCK_HEROI_ATUALIZAR);
+        await context.create(MOCK_HEROI_DEAFALT);
     });
 
     it('MongoDB Connection', async () => {
@@ -33,6 +33,14 @@ describe('MongoDB Strategy', function () {
         const { nome, poder } = await context.create(MOCK_HEROI_CADASTRAR);
 
        assert.deepEqual({ nome, poder }, MOCK_HEROI_CADASTRAR);
+    });
+
+    it('Listar', async () => {
+        const [{ nome, poder }] = await context.read({ nome: MOCK_HEROI_DEAFALT.nome });
+
+        const result = { nome, poder }
+
+       assert.deepEqual(result, MOCK_HEROI_DEAFALT);
     });
 
 });
