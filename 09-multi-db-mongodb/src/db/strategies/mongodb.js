@@ -26,7 +26,7 @@ class MongoDB extends ICrud {
     }
 
     defineModel() {
-        heroiSchema = new Mongoose.Schema({
+        const heroiSchema = new Mongoose.Schema({
             nome: {
                 type: String,
                 required: true
@@ -57,15 +57,12 @@ class MongoDB extends ICrud {
         this._driver = connection;
         connection.once('open', () => console.log('databse rodando!'));
 
+        this.defineModel();
+
     }
 
     async create(item) {
-        const resultCadastrar = await model.create({
-            nome: 'Mulher Maravilha',
-            poder: 'algum'
-        });
-
-        console.log(resultCadastrar);
+        return await this._herois.create(item);
     }
 
 

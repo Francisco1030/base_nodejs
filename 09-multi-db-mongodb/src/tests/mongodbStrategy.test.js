@@ -22,11 +22,17 @@ describe('MongoDB Strategy', function () {
         // await context.create(MOCK_HEROI_ATUALIZAR);
     });
 
-    it('MongoDB Connection', async function () {
+    it('MongoDB Connection', async () => {
         const result = await context.isConnected();
         const expected = 'Conectado';
 
-        assert.equal(result, expected);
+        assert.deepEqual(result, expected);
+    });
+
+    it('Cadastrar', async () => {
+        const { nome, poder } = await context.create(MOCK_HEROI_CADASTRAR);
+
+       assert.deepEqual({ nome, poder }, MOCK_HEROI_CADASTRAR);
     });
 
 });
