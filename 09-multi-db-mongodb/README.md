@@ -30,17 +30,26 @@
 ## ---- MONGODB
 ``` shell
     docker run \
-        --name mongodb \
+        --name mongo \
         -e MONGO_INITDB_ROOT_USERNAME=admin \
         -e MONGO_INITDB_ROOT_PASSWORD=admin \
         -p 27017:27017 \
         -d \
+        mongo:4 \
+        --restart
+
+    sudo docker run \        
+        --name mongo \
+        --restart unless-stopped \
+        -p 27017:27017 \
+        -d \
         mongo:4
+
 
     docker run \
         --name mongoclient \
         -p 3000:3000 \
-        --link mongo:mongo \
+        --link mongodb:mongodb \
         -d \
         mongoclient/mongoclient
 
