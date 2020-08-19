@@ -13,6 +13,13 @@ const MOCK_HEROI_DEAFALT = {
     poder: 'Super teia'
 }
 
+const MOCK_HEROI_ATUALIZAR = { 
+    nome: `Homem de Ferro`,
+    poder: 'dinhero'
+}
+
+let MOCK_HEROI_ID = '';
+
 describe('MongoDB Strategy', function () {
     //this.timeout(Infinity);
 
@@ -20,6 +27,8 @@ describe('MongoDB Strategy', function () {
         db = await context.connect();
         // await context.delete();
         await context.create(MOCK_HEROI_DEAFALT);
+        const result = await context.create(MOCK_HEROI_ATUALIZAR);
+        MOCK_HEROI_ID = result._id;
     });
 
     it('MongoDB Connection', async () => {
@@ -43,4 +52,11 @@ describe('MongoDB Strategy', function () {
        assert.deepEqual(result, MOCK_HEROI_DEAFALT);
     });
 
+    it('Atualizar', async () => {
+        const result = await context.update(MOCK_HEROI_ID, {
+            nome: 'R2D2'
+        });
+
+       assert.deepEqual(result.nModified, 1);
+    });
 });
