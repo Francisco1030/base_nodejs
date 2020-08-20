@@ -19,7 +19,7 @@ class Postgres extends ICrud {
         }
     }
 
-    async connect() {
+    static async connect() {
         this._driver = new Sequelize(
             'hero',
             'postgres',
