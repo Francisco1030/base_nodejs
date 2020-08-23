@@ -1,7 +1,5 @@
-const Sequelize = require('sequelize');
-
+const Sequelize = require('sequelize')
 const HeroiSchema = {
-  name: 'herois',
     schema: {
         id: {
           type: Sequelize.INTEGER,
@@ -27,4 +25,4 @@ const HeroiSchema = {
       }
 }
 
-module.exports = HeroiSchema;
+module.exports = HeroiSchema
