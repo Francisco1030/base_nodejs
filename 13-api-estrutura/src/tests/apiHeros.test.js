@@ -2,7 +2,7 @@ const assert = require('assert');
 const api = require('../api');
 let app = {};
 
-describe.only('Suite de testes da API Heroes', function () {
+describe('Suite de testes da API Heroes', function () {
     this.beforeAll(async () => {
         app = await api;
     });
@@ -15,7 +15,6 @@ describe.only('Suite de testes da API Heroes', function () {
 
         const dados = JSON.parse(result.payload);
         const statusCode = result.statusCode;
-        console.log(result);
 
         assert.deepEqual(statusCode, 200);
         assert.ok(Array.isArray(dados));
