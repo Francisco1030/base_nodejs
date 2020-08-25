@@ -11,13 +11,13 @@
   "author": "“Francisco <“franciscoviana862@gmail.com”>",
   "license": "“MIT”",
   "dependencies": {
-    "hapi": "^17.7.0",
+    "hapi": "^18.1.0",
     "mongoose": "5.9.13",
-    "pg": "^7.4.3",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^4.38.0"
+    "pg": "^8.3.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.4"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^8.1.1"
   }
 }

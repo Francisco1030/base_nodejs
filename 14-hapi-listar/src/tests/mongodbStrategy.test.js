@@ -3,17 +3,17 @@ const MongoDB = require('../db/strategies/mongodb/mongodb');
 const HeroiSchema = require('../db/strategies/mongodb/schemas/herois.Schema');
 const Context = require('../db/strategies/base/contextStrategy');
 
-const MOCK_HEROI_CADASTRAR = {
+const MOCK_HEROI_CADASTRAR = { 
     nome: 'Gavião Negro',
     poder: 'flexas'
 }
 
-const MOCK_HEROI_DEAFALT = {
+const MOCK_HEROI_DEAFALT = { 
     nome: `Homem Aranha-${Date.now()}`,
     poder: 'Super teia'
 }
 
-const MOCK_HEROI_ATUALIZAR = {
+const MOCK_HEROI_ATUALIZAR = { 
     nome: `Homem de Ferro`,
     poder: 'dinhero'
 }
@@ -43,7 +43,7 @@ describe('MongoDB Strategy', function () {
     it('Cadastrar', async () => {
         const { nome, poder } = await context.create(MOCK_HEROI_CADASTRAR);
 
-        assert.deepEqual({ nome, poder }, MOCK_HEROI_CADASTRAR);
+       assert.deepEqual({ nome, poder }, MOCK_HEROI_CADASTRAR);
     });
 
     it('Listar', async () => {
@@ -51,7 +51,7 @@ describe('MongoDB Strategy', function () {
 
         const result = { nome, poder }
 
-        assert.deepEqual(result, MOCK_HEROI_DEAFALT);
+       assert.deepEqual(result, MOCK_HEROI_DEAFALT);
     });
 
     it('Atualizar', async () => {
@@ -59,12 +59,12 @@ describe('MongoDB Strategy', function () {
             nome: 'R2D2'
         });
 
-        assert.deepEqual(result.nModified, 1);
+       assert.deepEqual(result.nModified, 1);
     });
 
     it('Remover', async () => {
         const result = await context.delete(MOCK_HEROI_ID);
 
-        assert.deepEqual(result.n, 1);
+       assert.deepEqual(result.n, 1);
     });
 });
