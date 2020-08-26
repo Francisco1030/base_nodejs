@@ -1,7 +1,7 @@
 {
-  "name": "07-multi-db",
+  "name": "modulo05-multidatabase",
   "version": "1.0.0",
-  "description": "<h2 align=\"center\"> Docker  </h2>",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha src/tests/*.js",
@@ -16,8 +16,5 @@
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.38.0"
-  },
-  "devDependencies": {
-    "mocha": "^5.2.0"
   }
 }

@@ -1,9 +1,8 @@
-const BaseRoute = require('./base/baseRoute');
-
+const BaseRoute = require('./base/baseRoute')
 class HeroRoutes extends BaseRoute {
     constructor(db) {
-        super();
-        this.db = db;
+        super()
+        this.db = db
     }
 
     list() {
@@ -11,10 +10,12 @@ class HeroRoutes extends BaseRoute {
             path: '/herois',
             method: 'GET',
             handler: (request, headers) => {
-                return this.db.read();
+                return this.db.read()
             }
         }
     }
+   
+    
 }
 
-module.exports = HeroRoutes;
+module.exports = HeroRoutes
