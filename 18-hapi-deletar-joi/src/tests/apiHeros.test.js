@@ -148,7 +148,6 @@ describe('Suite de testes da API Heroes', function () {
         const result = await app.inject({
             method: 'DELETE',
             url: `/herois/${_id}`,
-            payload: JSON.stringify(experted)
         });
 
         const statusCode = result.statusCode;
