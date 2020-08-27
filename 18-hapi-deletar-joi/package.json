@@ -12,6 +12,7 @@
   "author": "“Francisco <“franciscoviana862@gmail.com”>",
   "license": "“MIT”",
   "dependencies": {
+    "boom": "^7.3.0",
     "hapi": "^18.1.0",
     "joi": "^14.1.0",
     "mongoose": "5.9.13",
