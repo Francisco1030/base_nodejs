@@ -122,4 +122,23 @@ describe('Suite de testes da API Heroes', function () {
         assert.ok(statusCode === 200);
         assert.deepEqual(dados.message, 'Heroi atualizado com sucesso!');
     });
+
+    it('Atualizar PATH /herois/:id  - não deve atualizar com id incorreto', async () => {
+        const _id = `5f3d2a94733ef36b276f481b`;
+        const experted = {
+            poder: 'Super mira'
+        };
+
+        const result = await app.inject({
+            method: 'PATH',
+            url: `/herois/${_id}`,
+            payload: JSON.stringify(experted)
+        });
+
+        const statusCode = result.statusCode;
+        const dados = JSON.parse(result.payload);
+        
+        assert.ok(statusCode === 200);
+        assert.deepEqual(dados.message, 'Não foi possivel atualizar');
+    });
 });
