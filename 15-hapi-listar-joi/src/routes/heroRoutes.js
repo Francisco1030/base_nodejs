@@ -33,7 +33,7 @@ class HeroRoutes extends BaseRoute {
 
                     const query = nome ? { nome: { $regex: `.*${nome}*.` } } : {};
 
-                    return this.db.read(none ? query : {}, skip, limit);
+                    return this.db.read(nome ? query : {}, skip, limit);
                 } catch (error) {
                     console.log('deu ruim', error);
                     return "Erro interno no servidor";
