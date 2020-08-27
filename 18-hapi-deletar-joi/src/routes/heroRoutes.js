@@ -102,9 +102,7 @@ class HeroRoutes extends BaseRoute {
 
                     const result = await this.db.update(id, dados);
 
-                    if (result.nModified !== 1) return {
-                        message: 'Não foi possivel atualizar'
-                    }
+                    if (result.nModified !== 1) return Boom.preconditionFailed('Id não encontrado no banco!');
 
                     return {
                         message: 'Heroi atualizado com sucesso!'
@@ -140,9 +138,7 @@ class HeroRoutes extends BaseRoute {
 
                     const result = await this.db.delete(id);
 
-                    if (result.n !== 1) return {
-                        message: 'Não foi possivel remover'
-                    }
+                    if (result.n !== 1) return Boom.preconditionFailed('Id não encontrado no banco!');
 
                     return {
                         message: 'Heroi removido com sucesso!'

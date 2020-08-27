@@ -2,12 +2,12 @@ const assert = require('assert');
 const api = require('../api');
 let app = {};
 
-const MOCK_HEROI_CADASTRAR = { 
+const MOCK_HEROI_CADASTRAR = {
     nome: 'Hulk',
     poder: 'verde'
 };
 
-const MOCK_HEROI_INICIAL = { 
+const MOCK_HEROI_INICIAL = {
     nome: 'Gavião Negro',
     poder: 'mira'
 };
@@ -98,7 +98,7 @@ describe('Suite de testes da API Heroes', function () {
 
         const statusCode = result.statusCode;
         const { message, _id } = JSON.parse(result.payload);
-        
+
         assert.ok(statusCode === 200);
         assert.notStrictEqual(_id, undefined);
         assert.deepEqual(message, 'Heroi cadastrado com sucesso!');
@@ -118,28 +118,33 @@ describe('Suite de testes da API Heroes', function () {
 
         const statusCode = result.statusCode;
         const dados = JSON.parse(result.payload);
-        
+
         assert.ok(statusCode === 200);
         assert.deepEqual(dados.message, 'Heroi atualizado com sucesso!');
     });
 
     it('Atualizar PATH /herois/:id  - não deve atualizar com id incorreto', async () => {
         const _id = `5f3d2a94733ef36b276f481b`;
-        const experted = {
-            poder: 'Super mira'
-        };
 
         const result = await app.inject({
             method: 'PATH',
             url: `/herois/${_id}`,
-            payload: JSON.stringify(experted)
+            payload: JSON.stringify({
+                poder: 'Super mira'
+            })
         });
 
         const statusCode = result.statusCode;
         const dados = JSON.parse(result.payload);
-        
-        assert.ok(statusCode === 200);
-        assert.deepEqual(dados.message, 'Não foi possivel atualizar');
+
+        const experted = {
+            statusCode: 412,
+            error: 'Precondition Failed',
+            message: 'Id não encontrado no banco!'
+        };
+
+        assert.ok(statusCode === 412);
+        assert.deepEqual(dados, experted);
     });
 
     it('Remover DELETE /herois/:id ', async () => {
@@ -152,8 +157,28 @@ describe('Suite de testes da API Heroes', function () {
 
         const statusCode = result.statusCode;
         const dados = JSON.parse(result.payload);
-        
+
         assert.ok(statusCode === 200);
         assert.deepEqual(dados.message, 'Heroi removido com sucesso!');
+    });
+
+    it('Remover DELETE /herois/:id não deve remover', async () => {
+        const _id = '5f3d2a94733ef36b276f481b';
+
+        const result = await app.inject({
+            method: 'DELETE',
+            url: `/herois/${_id}`,
+        });
+
+        const statusCode = result.statusCode;
+        const dados = JSON.parse(result.payload);
+        const experted = {
+            statusCode: 412,
+            error: 'Precondition Failed',
+            message: 'Id não encontrado no banco!'
+        }
+
+        assert.ok(statusCode === 412);
+        assert.deepEqual(dados, experted);
     });
 });
