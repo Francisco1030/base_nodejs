@@ -1,5 +1,6 @@
 const BaseRoute = require('./base/baseRoute');
 const Joi = require('joi');
+const Boom = require('boom');
 const failAction = (request, headers, error) => {
     throw error;
 }
@@ -37,7 +38,7 @@ class HeroRoutes extends BaseRoute {
                     return this.db.read(nome ? query : {}, skip, limit);
                 } catch (error) {
                     console.log('deu ruim', error);
-                    return "Erro interno no servidor";
+                    return Boom.internal();
                 }
             }
         }
@@ -68,7 +69,7 @@ class HeroRoutes extends BaseRoute {
                     };
                 } catch (error) {
                     console.log('deu ruim', error);
-                    return "Erro interno no servidor";
+                    return Boom.internal();
                 }
             }
 
@@ -110,7 +111,7 @@ class HeroRoutes extends BaseRoute {
                     };
                 } catch (error) {
                     console.log('deu ruim', error);
-                    return "Erro interno no servidor";
+                    return Boom.internal();
                 }
             }
 
@@ -148,7 +149,7 @@ class HeroRoutes extends BaseRoute {
                     };
                 } catch (error) {
                     console.log('deu ruim', error);
-                    return "Erro interno no servidor";
+                    return Boom.internal();
                 }
             }
 
