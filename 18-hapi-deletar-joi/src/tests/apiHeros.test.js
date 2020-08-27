@@ -181,4 +181,24 @@ describe('Suite de testes da API Heroes', function () {
         assert.ok(statusCode === 412);
         assert.deepEqual(dados, experted);
     });
+
+    it('Remover DELETE /herois/:id não deve remover com id invalido', async () => {
+        const _id = 'ID_INVALIDO';
+
+        const result = await app.inject({
+            method: 'DELETE',
+            url: `/herois/${_id}`,
+        });
+
+        const statusCode = result.statusCode;
+        const dados = JSON.parse(result.payload);
+        const experted = {
+            error: 'Internal Server Error',
+            message: 'An internal server error occurred',
+            statusCode: 500
+        }
+
+        assert.ok(statusCode === 500);
+        assert.deepEqual(dados, experted);
+    });
 });
