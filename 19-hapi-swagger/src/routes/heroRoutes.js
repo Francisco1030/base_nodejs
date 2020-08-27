@@ -85,8 +85,11 @@ class HeroRoutes extends BaseRoute {
     update() {
         return {
             path: '/herois/{id}',
-            method: 'PATH',
+            method: 'PATCH',
             config: {
+                tags: ['api'],
+                description: 'Deve atualizar heroi por id',
+                notes: 'Pode atualizar qualquer campo',
                 validate: {
                     failAction: failAction,
                     params: {

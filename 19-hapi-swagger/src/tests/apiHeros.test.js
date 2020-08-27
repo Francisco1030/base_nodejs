@@ -104,14 +104,14 @@ describe('Suite de testes da API Heroes', function () {
         assert.deepEqual(message, 'Heroi cadastrado com sucesso!');
     });
 
-    it('Atualizar PATH /herois/:id ', async () => {
+    it('Atualizar PATCH /herois/:id ', async () => {
         const _id = MOCK_ID;
         const experted = {
             poder: 'Super mira'
         };
 
         const result = await app.inject({
-            method: 'PATH',
+            method: 'PATCH',
             url: `/herois/${_id}`,
             payload: JSON.stringify(experted)
         });
@@ -123,11 +123,11 @@ describe('Suite de testes da API Heroes', function () {
         assert.deepEqual(dados.message, 'Heroi atualizado com sucesso!');
     });
 
-    it('Atualizar PATH /herois/:id  - não deve atualizar com id incorreto', async () => {
+    it('Atualizar PATCH /herois/:id  - não deve atualizar com id incorreto', async () => {
         const _id = `5f3d2a94733ef36b276f481b`;
 
         const result = await app.inject({
-            method: 'PATH',
+            method: 'PATCH',
             url: `/herois/${_id}`,
             payload: JSON.stringify({
                 poder: 'Super mira'
