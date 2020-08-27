@@ -104,7 +104,7 @@ describe('Suite de testes da API Heroes', function () {
         assert.deepEqual(message, 'Heroi cadastrado com sucesso!');
     });
 
-    it('Atualizar PATH /herois ', async () => {
+    it('Atualizar PATH /herois/:id ', async () => {
         const _id = MOCK_ID;
         const experted = {
             poder: 'Super mira'

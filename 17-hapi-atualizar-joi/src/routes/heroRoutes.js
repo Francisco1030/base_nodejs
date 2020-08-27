@@ -51,8 +51,8 @@ class HeroRoutes extends BaseRoute {
                 validate: {
                     failAction: failAction,
                     payload: {
-                        nome: Joi.string().min(3).max(100),
-                        poder: Joi.string().min(2).max(10),
+                        nome: Joi.string().min(3).max(100).required(),
+                        poder: Joi.string().min(2).max(100).required(),
                     }
                 }
             },
@@ -65,6 +65,48 @@ class HeroRoutes extends BaseRoute {
                     return {
                         message: 'Heroi cadastrado com sucesso!',
                         _id: result._id
+                    };
+                } catch (error) {
+                    console.log('deu ruim', error);
+                    return "Erro interno no servidor";
+                }
+            }
+
+        }
+    }
+
+    update() {
+        return {
+            path: '/herois/{id}',
+            method: 'PATH',
+            config: {
+                validate: {
+                    failAction: failAction,
+                    params: {
+                        id: Joi.string().required()
+                    },
+                    payload: {
+                        nome: Joi.string().min(3).max(100),
+                        poder: Joi.string().min(2).max(100),
+                    }
+                }
+            },
+            handler: async (request, headers) => {
+                try {
+                    const { id } = request.params;
+                    const { payload } = request;
+
+                    const dadosString = JSON.stringify(payload);
+                    const dados = JSON.parse(dadosString);
+
+                    const result = await this.db.update(id, dados);
+
+                    if(result.nModified !== 1) return {
+                        message: 'Não foi possivel atualizar'
+                    }
+
+                    return {
+                        message: 'Heroi atualizado com sucesso!'
                     };
                 } catch (error) {
                     console.log('deu ruim', error);
