@@ -7,10 +7,23 @@ const MOCK_HEROI_CADASTRAR = {
     poder: 'verde'
 };
 
+const MOCK_HEROI_INICIAL = { 
+    nome: 'Gavião Negro',
+    poder: 'mira'
+};
+
+let MOCK_ID = '';
+
 describe('Suite de testes da API Heroes', function () {
     this.beforeAll(async () => {
         app = await api;
-        console.log(app);
+        const result = await app.inject({
+            method: 'POST',
+            url: '/herois',
+            payload: JSON.stringify(MOCK_HEROI_INICIAL)
+        });
+        const dados = JSON.parse(result.payload);
+        MOCK_ID = dados._id;
     });
 
     it('Listar /herois', async () => {
@@ -89,5 +102,24 @@ describe('Suite de testes da API Heroes', function () {
         assert.ok(statusCode === 200);
         assert.notStrictEqual(_id, undefined);
         assert.deepEqual(message, 'Heroi cadastrado com sucesso!');
-    })
+    });
+
+    it('Atualizar PATH /herois ', async () => {
+        const _id = MOCK_ID;
+        const experted = {
+            poder: 'Super mira'
+        };
+
+        const result = await app.inject({
+            method: 'PATH',
+            url: `/herois/${_id}`,
+            payload: JSON.stringify(experted)
+        });
+
+        const statusCode = result.statusCode;
+        const dados = JSON.parse(result.payload);
+        
+        assert.ok(statusCode === 200);
+        assert.deepEqual(dados.message, 'Heroi atualizado com sucesso!');
+    });
 });
