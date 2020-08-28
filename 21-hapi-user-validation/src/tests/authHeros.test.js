@@ -1,6 +1,4 @@
 const assert = require('assert');
-const api = require('../api');
-let app = {};
 
 describe('Auth test suite', function () {
     this.beforeAll(async () => {
