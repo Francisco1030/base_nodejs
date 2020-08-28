@@ -19,8 +19,7 @@ describe.only('Auth test suite', function () {
 
         const statusCode = result.statusCode;
         const dados = JSON.parse(result.payload);
-        console.log('dados', dados);
-
+        
         assert.deepEqual(statusCode, 200);
         assert.ok(dados.token.length > 10);
     });

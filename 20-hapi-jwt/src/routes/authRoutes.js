@@ -2,6 +2,7 @@ const BaseRoute = require('./base/baseRoute');
 const Joi = require('joi');
 const Boom = require('boom');
 //npm i jsonwebtoken
+//npm i hapi-auth-jwt2
 const Jwt = require('jsonwebtoken');
 const failAction = (request, headers, error) => {
     throw error;
