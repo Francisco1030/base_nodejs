@@ -1,10 +1,8 @@
 const assert = require('assert');
 const api = require('../api');
-const { describe } = require('joi/lib/types/date');
-const { items } = require('joi/lib/types/array');
 let app = {};
 
-describe('Auth test suite', function () {
+describe.only('Auth test suite', function () {
     this.beforeAll(async () => {
         app = await api;
     });
@@ -14,15 +12,16 @@ describe('Auth test suite', function () {
             method: 'POST',
             url: '/login',
             payload: {
-                username: 'Fcoviana',
-                passeord: '123'
+                username: 'fcoviana',
+                password: '123'
             }
         });
 
         const statusCode = result.statusCode;
         const dados = JSON.parse(result.payload);
+        console.log('dados', dados);
 
         assert.deepEqual(statusCode, 200);
-        assert.ok(dados.token.legth > 10);
+        assert.ok(dados.token.length > 10);
     });
 });

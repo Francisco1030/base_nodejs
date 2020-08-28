@@ -8,13 +8,13 @@ const failAction = (request, headers, error) => {
 }
 const USER = {
     username: 'fcoviana',
-    passeord: '123'
+    password: '123'
 }
 
 class AuthRoutes extends BaseRoute {
-    constructor(db) {
+    constructor(secret) {
         super();
-        this.db = db;
+        this.secret = secret;
     }
 
     login() {
@@ -35,11 +35,16 @@ class AuthRoutes extends BaseRoute {
             },
             handler: async (request) => {
                 const { username, password } = request.payload;
+         
                 if (username.toLowerCase() !== USER.username ||
                     password !== USER.password) return Boom.unauthorized();
 
+                const token = Jwt.sign({
+                    username: username,
+                    id: 1
+                }, this.secret);
                 return {
-
+                    token
                 }
             }
         }
