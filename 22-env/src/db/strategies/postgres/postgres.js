@@ -20,29 +20,26 @@ class Postgres extends ICrud {
     }
 
     static async connect() {
-        const connection = new Sequelize(
-            'hero',
-            'postgres',
-            'postgres',
-            {
-                host: 'localhost',
-                dialect: 'postgres',
-                quoteIdentifiers: false,
-                operatorsAliases: false,
-                logging: false
+        const connection = new Sequelize(process.env.POSTGRES_URL, {
+            quoteIdentifiers: false,
+            operatorsAliases: false,
+            logging: false,
+            ssl: process.env.SSL_DB,
+            dialectOptions: {
+                ssl: process.env.SSL_DB,
             }
-        );
+        });
         return await connection;
     }
 
     static async defineModel(connection, schema) {
         const model = connection.define(
-          schema.name, schema.schema, schema.options,
+            schema.name, schema.schema, schema.options,
         );
         await model.sync();
         return model;
-      }
-    
+    }
+
     async create(item) {
         const { dataValues } = await this._schema.create(item);
         return dataValues;
