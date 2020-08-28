@@ -11,6 +11,8 @@ const AuthRoute = require('./routes/authRoutes');
 const HapiSwagger = require('hapi-swagger');
 const Vision = require('vision');
 const Inert = require('inert');
+
+const HapiJwt = require('hapi-auth-jwt2');
 const JWT_SECRET = 'API_TOKEN_JWT';
 
 const app = new Hapi.Server({
@@ -34,6 +36,7 @@ async function main() {
     }
 
     await app.register([
+        HapiJwt,
         Vision,
         Inert,
         {
@@ -42,6 +45,22 @@ async function main() {
         }
     ]);
 
+    app.auth.strategy('jwt', 'jwt', {
+        key: JWT_SECRET,
+        // options: {
+        //     expiresIn: 20
+        // }
+        validate: (dado, request) => {
+            // verifica se o user é valido,
+            // verifica se o user ta pagando
+
+            return {
+                isValid: true
+            }
+        }
+    });
+
+    app.auth.default('jwt');
     app.route([
         ...mapRoutes(new HeroRoutes(context), HeroRoutes.methods()),
         ...mapRoutes(new AuthRoute(JWT_SECRET), AuthRoute.methods())
