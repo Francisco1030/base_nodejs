@@ -14,7 +14,7 @@ describe('Auth test suite', function () {
             method: 'POST',
             url: '/login',
             payload: {
-                username: 'fcoviana',
+                username: 'Fcoviana',
                 passeord: '123'
             }
         });
