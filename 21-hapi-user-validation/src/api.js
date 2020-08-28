@@ -60,10 +60,20 @@ async function main() {
         // options: {
         //     expiresIn: 20
         // }
-        validate: (dado, request) => {
+        validate: async (dado, request) => {
             // verifica se o user é valido,
             // verifica se o user ta pagando
 
+            const [result] = await contextPostgres.read({
+                username: dado.username.toLowerCase(),
+                // id: dado.id
+            });
+
+            if(!result) {
+                return {
+                    isValid: false
+                }
+            }
             return {
                 isValid: true
             }
